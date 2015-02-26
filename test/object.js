@@ -383,6 +383,21 @@ describe('object', function () {
                 });
             });
         });
+
+        it('strips keys flagged with strip', function (done) {
+
+            var schema = Joi.object({
+                a: Joi.string().strip(),
+                b: Joi.string()
+            });
+            schema.validate({ a: 'test', b: 'test' }, function (err, value) {
+
+                expect(err).to.not.exist();
+                expect(value.a).to.not.exist();
+                expect(value.b).to.equal('test');
+                done();
+            });
+        });
     });
 
     describe('#unknown', function () {
