@@ -398,6 +398,29 @@ describe('object', function () {
                 done();
             });
         });
+
+        it('does not alter the original object when stripping keys', function (done) {
+
+            var schema = Joi.object({
+                a: Joi.string().strip(),
+                b: Joi.string()
+            });
+
+            var valid = {
+                a: 'test',
+                b: 'test'
+            };
+
+            schema.validate(valid, function (err, value) {
+
+                expect(err).to.not.exist();
+                expect(value.a).to.not.exist();
+                expect(valid.a).to.equal('test');
+                expect(value.b).to.equal('test');
+                expect(valid.b).to.equal('test');
+                done();
+            });
+        });
     });
 
     describe('#unknown', function () {
