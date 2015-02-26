@@ -110,7 +110,7 @@ describe('any', function () {
             expect(function () {
 
                 Joi.any().options({ presence: 'yes' });
-            }).to.throw('presence should be one of required, optional, forbidden, ignore, strip');
+            }).to.throw('presence should be one of required, optional, forbidden, ignore');
             done();
         });
     });
